@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Juego del ahorcado</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/styles.css"> <!-- Nueva línea para el archivo de estilos CSS -->
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-light" href="#">Juego del Ahorcado</a>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item nav-link item-option" id="itemCategoria">
+                                Categoría: <span id="categoriaSeleccionadaElement"></span>
+                            </li>
+                            <li class="nav-item nav-link item-option" id="itemJuegosPerdidos">
+                                Juegos perdidos: <span id="juegosPerdidosElement"></span>
+                            </li>
+                            <li class="nav-item nav-link item-option" id="itemJuegosGanados">
+                                Juegos ganados: <span id="juegosGanadosElement"></span>
+                            </li>
+                            <li class="nav-item nav-link item-option" id="itemIntentos">
+                                Intentos: <span id="intentosElement"></span>
+                            </li>
+                            <li class="nav-item nav-link item-option" id="itemIntentosDispoibles">
+                                Intentos Disponibles: <span id="intentosDisponiblesElement"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-flex">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item nav-link item-option" id="reiniciar">
+                                Reiniciar
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </nav>
+        </div>
+        <!-- Contenido del juego -->
+        <div class="row mt-4">
+            <!-- Columna de la palabra secreta -->
+            <div class="col-md-6">
+                <h2 class="text-center">Palabra Secreta</h2>
+                <p class="text-center" style="font-size: xxx-large" id="palabraSecreta">_ _ _ _ _</p>
+
+                <div class="row">
+                    <div class="col text-center" id="abecedario"></div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary" onclick="iniciarJuego()">Iniciar Juego</button>
+                    </div>
+                </div>
+        
+            </div>
+
+            <!-- Columna del monito ahorcado -->
+            <div class="col-md-6 text-center">
+                <canvas id="canvasAhorcado" width="500" height="500"></canvas>
+            </div>
+        </div>
+
+        <!-- Botones para iniciar el juego -->
+    
+    </div>
+
+
+    <!-- Modal Categoria -->
+    <div class="modal fade" id="modalCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-header modal-header-custom">
+                    <h1 class="modal-title fs-5 text-md-center">Seleccionar una categoría</h1>
+                </div>
+                <div class="modal-body modal-body-custom">
+                    <ul id="listaCategorias">
+                        <!-- Las categorías se generarán dinámicamente aquí -->
+                    </ul>
+                </div>
+                <div class="modal-footer modal-footer-custom">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal fade" id="modalConfirmacionReinicio" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        onclick="cerrarModalConfirmacionReinicio()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas continuar (esto reiniciará los juegos)?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="cerrarModalConfirmacionReinicio()">Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmarReinicio">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Ganado -->
+    <div class="modal fade" id="modalGanado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-custom">
+
+                <div class="modal-body modal-body-custom">
+                    <h3 class="text-center">
+                        Haz Ganado
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Perdido -->
+    <div class="modal fade" id="modalPerdido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-custom">
+
+                <div class="modal-body modal-body-custom">
+                    <h3 class="text-center">
+                        Haz Perdido la palabra es: <br> <b id="modalPerdidoPS"></b>
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="assets/jquery-3.7.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.js"></script>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
